@@ -9,7 +9,7 @@ services:
     - DISCORD_SERVER_ID_E=
     - DISCORD_BOT_TOKEN_E=
     - DISCORD_WEBHOOK_URL_E=
-    command:  bash -c "pnpm install && npm run dev && pnpm db:push"
+    command:  bash -c "pnpm install && pnpm db:push & npm run dev"
     ports:
       - 5553:5553
       - 3000:3000
