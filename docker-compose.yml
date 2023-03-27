@@ -1,8 +1,28 @@
 version: '3.8'
 services:
-  postgres:
+  app:
+    container_name: app
+    build: .
+    environment:
+    - DISCORD_CLIENT_ID=
+    - DISCORD_CLIENT_SECRET=
+    - DISCORD_SERVER_ID_E=
+    - DISCORD_BOT_TOKEN_E=
+    - DISCORD_WEBHOOK_URL_E=
+    command:  bash -c "pnpm install && npm run dev && pnpm db:push"
+    ports:
+      - 5553:5553
+      - 3000:3000
+    networks:
+      - rewards
+    depends_on:
+      - db
+      - pgadmin
+  db:
+    container_name: db
     image: postgres
     environment:
+      POSTGRES_DB: rewardsdb
       POSTGRES_USER: root
       POSTGRES_PASSWORD: admin
     restart: unless-stopped
@@ -25,6 +45,10 @@ services:
     networks:
       - rewards
     restart: unless-stopped
+    depends_on:
+      - db
+
 networks:
   rewards:
     driver: bridge
+  

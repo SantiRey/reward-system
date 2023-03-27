@@ -35,6 +35,37 @@ packages
 
 As the project uses Turborepo, you could run the following commands on the root, and it will run every inner same command.
 
+## Running the Project with Docker Compose
+
+To run the project using Docker Compose, make sure you have Docker and Docker Compose installed on your system. Then, in the terminal, navigate to the directory where you have the docker-compose.yml file and run the following command:
+
+```
+docker-compose up
+```
+This will start all the services described in the docker-compose.yml file, including the application, Postgres database, and PgAdmin.
+
+#### PgAmdin Web-Client (OPTIONAL) 
+
+You will need to set the following environment variables in order for the application to run correctly:
+```
+- DISCORD_CLIENT_ID
+- DISCORD_CLIENT_SECRET
+- DISCORD_SERVER_ID_E
+- DISCORD_BOT_TOKEN_E
+- DISCORD_WEBHOOK_URL_E
+```
+
+These can be set either in a .env file or by exporting them in the terminal before running ```docker-compose up```.
+
+The application uses a Postgres database for storing data. You can access the database using PgAdmin at localhost:5050. The default username is root and the default password is admin. Once you're logged in, you can add a new server using the following credentials:
+```
+Host name/address: db
+Port: 5432
+Maintenance database: rewardsdb
+Username: root
+Password: admi
+```
+
 ## Run the Main Project
 
 Install Dependencies
